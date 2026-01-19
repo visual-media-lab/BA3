@@ -27,7 +27,7 @@ def year_filter(df, start_date, end_date):
     df = df[(df["Collection date"] >= start_date) & (df["Collection date"] <= end_date)]
     return df
 
-def common_muts(list_series, threshold=0.6):
+def common_muts(list_series, threshold=0.5):
     """
     list_series: 変異リストのSeries（各行がlist）
     threshold: 出現率の下限（0.5なら50%以上）
@@ -52,7 +52,7 @@ def main():
     ap.add_argument("--meta", required=True, help="GISAID metadata.tsv containing Accession ID, Collection date")
     ap.add_argument("--start", required=True, help="start date YYYY-MM-DD")
     ap.add_argument("--end", required=True, help="end date YYYY-MM-DD")
-    ap.add_argument("--threshold", type=float, default=0.6, help="frequency threshold (default 0.5)")
+    ap.add_argument("--threshold", type=float, default=0.5, help="frequency threshold (default 0.5)")
     args = ap.parse_args()
 
     # Nextclade読み込み（tsv/csv自動判別）
